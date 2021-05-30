@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:paddingTop="200dp"
+    android:layout_margin="10dp"
+    android:layout_gravity="center|bottom"
+    >
+    <!--StechColums화면 짤링 방지 (꽉차게)-->
+
+<!--    입력부-->
+    <TableRow>
+
+        <EditText
+            android:layout_weight = "1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="4"
+            android:hint="숫자를 입력하세요" />     <!--입력문은 4행을 합친 길이-->
+
+    </TableRow>
+
+<!--    사칙연산 부분-->
+    <TableRow>
+        <Button
+            android:layout_weight = "1"
+            android:layout_margin="2dp"
+            android:id="@+id/btnAdd"
+            android:text="+"/>
+        <Button
+            android:layout_margin="2dp"
+            android:layout_weight = "1"
+            android:id="@+id/btnMinus"
+            android:text="-"/>
+        <Button
+            android:layout_weight = "1"
+            android:layout_margin="2dp"
+            android:id="@+id/btnMul"
+            android:text="x"/>
+        <Button
+            android:layout_weight = "1"
+            android:layout_margin="2dp"
+            android:id="@+id/btnDiv"
+            android:text="%"/>
+    </TableRow>
+
+    <!--    비트 연산 부분-->
+    <TableRow>
+        <Button
+            android:layout_margin="2dp"
+            android:id="@+id/btnAnd"
+            android:layout_weight = "1"
+            android:text="AND"/>
+
+        <Button
+            android:layout_weight = "1"
+            android:layout_margin="2dp"
+            android:id="@+id/btnOr"
+            android:text="OR"/>
+
+        <Button
+            android:layout_weight = "1"
+            android:layout_margin="2dp"
+            android:id="@+id/btnXor"
+            android:text="XOR"/>
+
+        <Button
+            android:layout_weight = "1"
+            android:layout_margin="2dp"
+            android:id="@+id/btnNot"
+            android:text="NOT"/>
+
+    </TableRow>
+
+    <!--    추가 기능 부분-->
+    <TableRow>
+        <Button
+            android:layout_weight = "1"
+            android:layout_margin="2dp"
+            android:id="@+id/btnMod"
+            android:text="MOD"/>
+        <Button
+            android:layout_weight = "1"
+            android:layout_margin="2dp"
+            android:id="@+id/btnFileOutput"
+            android:text="File"/>
+        <Button
+            android:layout_weight = "1"
+            android:layout_margin="2dp"
+            android:id="@+id/btnHistory"
+            android:text="기록"/>
+        <Button
+            android:layout_weight = "1"
+            android:layout_margin="2dp"
+            android:id="@+id/btnResult"
+            android:text="="/>
+    </TableRow>
+
+</TableLayout>
