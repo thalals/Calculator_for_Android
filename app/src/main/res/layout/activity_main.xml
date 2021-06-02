@@ -131,7 +131,7 @@
             android:layout_weight = "1"
             android:layout_margin="2dp"
             android:id="@+id/btnDiv"
-            android:text="%"/>
+            android:text="/"/>
     </TableRow>
 
     <!--    비트 연산 부분-->
@@ -168,7 +168,7 @@
             android:layout_weight = "1"
             android:layout_margin="2dp"
             android:id="@+id/btnMod"
-            android:text="MOD"/>
+            android:text="%"/>
         <Button
             android:layout_weight = "1"
             android:layout_margin="2dp"
