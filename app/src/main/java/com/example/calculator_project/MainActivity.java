@@ -6,12 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import javax.xml.transform.Result;
 
@@ -29,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     TextView TextResult;
 
     String text;    //입력받은 문장
-    Double Nubmerresult;
+    String[] HistoryStore = new String[50];
+    int HistroyCount = 0;
 
     int i;
     @Override
@@ -189,8 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 text = edit.getText().toString();
 
                 String LineWord[] = text.split("");
-                ArrayList<String> ResultLine = new ArrayList<>();
-
+                Deque<String> ResultLine = new LinkedList<>();         //연산식 Deque에 저장 LinkedList를 이용해 구현
                 String number="";
 
                 boolean DotFlag = false;
@@ -227,10 +236,9 @@ public class MainActivity extends AppCompatActivity {
                             number="";
                         }
                         // 연산자가 맨 앞에 올 때 && 연속으로 연산자가 올 때
-                        if(ResultLine.isEmpty() && isOperator(ResultLine.get(ResultLine.size()-1))){
+                        if(ResultLine.isEmpty() | isOperator(ResultLine.peekLast())){
                             init();
                             Toast.makeText(getApplicationContext(), "연산자 입력이 잘 못 되었습니다. 다시 입력해주세요",Toast.LENGTH_SHORT).show();
-                            break;
                         }
                         else
                             ResultLine.add(ch);
@@ -264,26 +272,34 @@ public class MainActivity extends AppCompatActivity {
                         else{
                             init();
                             Toast.makeText(getApplicationContext(), "괄호 입력이 잘 못 되었습니다. 다시 입력해주세요",Toast.LENGTH_SHORT).show();
-                            break;
                         }
                     }
                     //그 외에 다른 문자가 입력되어진 경우
                     else{
                         init();
                         Toast.makeText(getApplicationContext(), "문자 입력이 잘 못 되었습니다. 다시 입력해주세요",Toast.LENGTH_SHORT).show();
-                        break;
                     }
                 }
                 // for 문 종료
                 if(!number.equals(""))
                     ResultLine.add(number);
+                //괄호가 다 안닫혔을때
+                if(LeftCount>0){
+                    init();
+                    Toast.makeText(getApplicationContext(), "괄호를 닫아주세요. 다시 입력해주세요",Toast.LENGTH_SHORT).show();
+                }
 
-                String a = "";
-                for(String y : ResultLine)
-                    a= a+y;
+                //ResultLine : 계산식 type : Deque History에 저장
+                if(HistroyCount==49)
+                    HistroyCount=0;
+                HistoryStore[HistroyCount++] = ResultLine.toString();
+
+                // 계산 : 1. 후위표기식 2. 후위표기식 계산
+                ArrayList<String> tempList = new ArrayList<>();
+                Double result = PostfixResult(ChangePostfix(ResultLine));
 
                 init();
-                TextResult.setText(a);
+                TextResult.setText(result.toString());
             }
         });
 
@@ -295,8 +311,131 @@ public class MainActivity extends AppCompatActivity {
                 edit.setText(text);
             }
         });
+
+        //기록
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                text = edit.getText().toString() + "~";
+                edit.setText(text);
+            }
+        });
+
     }
 
+    //후위표기식 계산
+    Double PostfixResult(ArrayList<String> postfixLine){
+        Double result = 0.0;
+        Stack<String> stack = new Stack<>();
+
+        for(String str : postfixLine){
+            //피연산자일 경우
+            if(isNumber(str))
+                stack.push(str);
+            //연산자일 경우
+            else{
+                String two = stack.pop();
+                String one = stack.pop();
+                Double temp = Calculator(one,two,str);
+                stack.push(temp.toString());
+            }
+        }
+        result = Double.parseDouble(stack.pop());
+        return result;
+    }
+
+    //연산자 계산
+    Double Calculator(String num1, String num2, String Operator){
+        Double result = 0.0;
+
+        Double one = Double.parseDouble(num1);
+        Double two = Double.parseDouble(num2);
+
+        int intone = (int) Math.round(one);
+        int inttwo = (int) Math.round(two);
+
+        switch(Operator){
+            case "+":
+                result = one + two;
+                break;
+            case "-":
+                result = one - two;
+                break;
+            case "x":
+                result = one * two;
+                break;
+            case "/":
+                result = one / two;
+                break;
+            case "%":
+                result = one % two;
+                break;
+            case "&":
+                result = (intone&inttwo) + 0.0;
+                break;
+            case "~":
+                result = (~inttwo) + 0.0;
+                break;
+            case "^":
+                result = (intone^inttwo) + 0.0;
+                break;
+            case "|":
+                result = (intone|inttwo) + 0.0;
+                break;
+        }
+
+        return result;
+    }
+    //중위표기식을 후위표기식으로
+    ArrayList ChangePostfix(Deque<String> LineList){
+        ArrayList<String> Postfix = new ArrayList<>();
+
+        Stack<String> stack = new Stack<String>();
+        String temp;
+        while(!LineList.isEmpty()){
+            temp = LineList.poll();
+
+            //연산자는
+            if(isNumber(temp))
+                Postfix.add(temp);
+
+            //"(" 무조건 스택에 push
+            else if(temp.equals("(")){
+                stack.push(temp);
+            }
+            //")" "("를 만날 때 까지 pop
+            else if(temp.equals(")")){
+                String str;
+                while(!stack.isEmpty()){
+                    str = stack.pop();
+                    if(str.equals("("))
+                        break;
+
+                    Postfix.add(str);
+                }
+            }
+            //연산자 일 때
+            else{
+                //스택이 비어있거나 최 상단이 ( 일 때
+                if(stack.isEmpty())
+                    stack.push(temp);
+
+                else if(stack.peek().equals("("))
+                    stack.push(temp);
+
+                else if(PriOperator(temp) <= PriOperator(stack.peek())){
+                    Postfix.add(stack.pop());
+                }
+                else
+                    stack.push(temp);
+            }
+        }
+
+        while(!stack.isEmpty())
+            Postfix.add(stack.pop());
+
+        return Postfix;
+    }
     // 초기화
     void init(){
         text = "";
@@ -313,34 +452,47 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+    //연산자 우선순위 반환
+    int PriOperator(String str){
+        int result = -1;
+        switch (str){
+            case "+" :
+            case "-" :
+                result = 3;
+            case "x" :
+            case "/" :
+            case "%" :
+                result = 2;
+                break;
+            case "&" :
+                result = 4;
+                break;
+            case "^" :
+                result = 5;
+                break;
+            case "~" :
+                result = 1;
+                break;
+            case "|" :
+                result = 6;
+                break;
+        }
+
+        return result;
+    }
+    
     //연산자 판별
     boolean isOperator(String str){
         boolean result = false;
         switch (str){
             case "+" :
-                result = true;
-                break;
             case "-" :
-                result = true;
-                break;
             case "x" :
-                result = true;
-                break;
             case "/" :
-                result = true;
-                break;
             case "%" :
-                result = true;
-                break;
             case "&" :
-                result = true;
-                break;
             case "^" :
-                result = true;
-                break;
             case "~" :
-                result = true;
-                break;
             case "|" :
                 result = true;
                 break;

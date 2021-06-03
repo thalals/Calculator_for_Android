@@ -12,6 +12,29 @@
     >
     <!--StechColums화면 짤링 방지 (꽉차게)-->
 
+    <TableRow>
+        <TextView>
+        </TextView>
+
+        <TextView>
+        </TextView>
+
+        <TextView>
+        </TextView>
+
+
+        <Button
+            android:layout_weight = "1"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_span="1"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:text="<-"
+            />
+    </TableRow>
+
 <!--    입력부-->
     <TableRow>
 
