@@ -1,11 +1,14 @@
 package com.example.calculator_project;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +34,19 @@ public class MainActivity extends AppCompatActivity {
     Integer[] numBtnIDs = {
             R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5,
             R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9
+    };
+
+    RadioButton[] numRadioButtons = new RadioButton[50];
+    Integer[] numRadiobtnIds = {
+            R.id.RadioCheck1, R.id.RadioCheck2,R.id.RadioCheck3,R.id.RadioCheck4,R.id.RadioCheck5,R.id.RadioCheck6,
+            R.id.RadioCheck7,R.id.RadioCheck8,R.id.RadioCheck9,R.id.RadioCheck10,R.id.RadioCheck11,R.id.RadioCheck12,
+            R.id.RadioCheck13,R.id.RadioCheck14,R.id.RadioCheck15,R.id.RadioCheck16,R.id.RadioCheck17,
+            R.id.RadioCheck18,R.id.RadioCheck19,R.id.RadioCheck20,R.id.RadioCheck21,R.id.RadioCheck22,R.id.RadioCheck23,
+            R.id.RadioCheck24,R.id.RadioCheck25,R.id.RadioCheck26,R.id.RadioCheck27,R.id.RadioCheck28,R.id.RadioCheck29,
+            R.id.RadioCheck30,R.id.RadioCheck31,R.id.RadioCheck32,R.id.RadioCheck33,R.id.RadioCheck34,R.id.RadioCheck35,
+            R.id.RadioCheck36,R.id.RadioCheck37,R.id.RadioCheck38,R.id.RadioCheck39,R.id.RadioCheck40,R.id.RadioCheck41,
+            R.id.RadioCheck42,R.id.RadioCheck43,R.id.RadioCheck44,R.id.RadioCheck45,R.id.RadioCheck46,R.id.RadioCheck47,
+            R.id.RadioCheck48,R.id.RadioCheck49,R.id.RadioCheck50
     };
 
     Button btnDot, btnLeft, btnRight;
@@ -79,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
             numButtons[i] = (Button)findViewById(numBtnIDs[i]);
         }
 
+        for(i=0; i<numRadiobtnIds.length;i++){
+            numRadioButtons[i] = (RadioButton) findViewById(numRadiobtnIds[i]);
+        }
 /*---------------------------- 버튼 클릭 이벤트 리스너--------------------------------------*/
 
         //숫자 버튼 클릭 시
@@ -290,9 +309,16 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 //ResultLine : 계산식 type : Deque History에 저장
-                if(HistroyCount==49)
+                if(HistroyCount==50)
                     HistroyCount=0;
-                HistoryStore[HistroyCount++] = ResultLine.toString();
+
+                String str = "";
+                for(String a : ResultLine)
+                    str=str+a;
+                //History 메뉴 계산식 update
+                //최근 50개 저장
+                HistoryStore[HistroyCount++] = str;
+
 
                 // 계산 : 1. 후위표기식 2. 후위표기식 계산
                 ArrayList<String> tempList = new ArrayList<>();
@@ -316,11 +342,25 @@ public class MainActivity extends AppCompatActivity {
         btnHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                text = edit.getText().toString() + "~";
-                edit.setText(text);
+                Intent intent = new Intent(getApplicationContext(),historyActivity.class);
+
+                intent.putExtra("Historystore",HistoryStore);   //저장된 계산식 배열 전송
+
+                startActivityForResult(intent,0);
             }
         });
 
+    }
+
+    //outIntent
+    //startActivityForResult로 실행한 액티비티가 종료되면 호출
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            String txt = data.getStringExtra("Copyhistiory");
+            edit.setText(txt);
+        }
     }
 
     //후위표기식 계산

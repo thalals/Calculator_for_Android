@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="15dp"
+        android:text="Histroy 계산식 목록 (최근 50개)"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+        <RadioGroup
+            android:id="@+id/RadioHistroryValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/RadioCheck1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck15"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck17"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck18"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck19"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck21"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck22"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck23"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck24"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck25"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck26"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck27"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck28"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck29"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck30"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck31"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck32"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+
+            <RadioButton
+                android:id="@+id/RadioCheck33"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck34"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+            <RadioButton
+                android:id="@+id/RadioCheck35"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck36"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck37"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck38"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck39"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck40"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck41"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck42"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck43"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck44"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck45"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck46"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck47"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck48"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck49"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+
+            <RadioButton
+                android:id="@+id/RadioCheck50"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="blank" />
+        </RadioGroup>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btncopy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:text="복사하기" />
+
+        <Button
+            android:id="@+id/btnback"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:text="돌아가기" />
+    </LinearLayout>
+</LinearLayout>
