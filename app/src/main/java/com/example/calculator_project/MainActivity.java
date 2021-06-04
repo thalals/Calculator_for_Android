@@ -3,6 +3,7 @@ package com.example.calculator_project;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -325,16 +329,30 @@ public class MainActivity extends AppCompatActivity {
                 Double result = PostfixResult(ChangePostfix(ResultLine));
 
                 init();
-                TextResult.setText(result.toString());
+                TextResult.setText(str+" = "+result.toString());
             }
         });
 
-        //파일로
+        //파일로(저장된 계산식 파일 출력)
         btnFileOutput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                text = edit.getText().toString() + "~";
-                edit.setText(text);
+                try {
+                    //파일이 없을 경우 새로 생성
+                    //Mode_private : 덮어 쓰기, Mode_append : 이어 쓰기
+                    FileOutputStream outFs = openFileOutput("History.txt", Context.MODE_PRIVATE);
+//                    FileOutputStream outFs = new FileOutputStream("/내장 메모리/Download/calculator/history.txt");
+                    for(i=0;i<HistoryStore.length;i++){
+                        if(HistoryStore[i]==null)
+                            break;
+                        outFs.write(HistoryStore[i].getBytes());
+                        outFs.write(13);
+                    }
+
+                    outFs.close();
+//                    File file = new File("/data/user/0/com.example.calculator_project/files/History.txt");
+                    Toast.makeText(getApplicationContext(),"History.txt 로 계산식 파일 저장",Toast.LENGTH_SHORT).show();
+                }catch (IOException e){}
             }
         });
 
